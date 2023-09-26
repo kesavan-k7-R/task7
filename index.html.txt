@@ -1,0 +1,83 @@
+
+
+First, we need to create a HTML structure that defines the grid areas for each news item. We can use the `<div>` element with different classes to mark the grid cells and the items inside them. For example:
+
+```html
+<div class="frontpage">
+  <div class="fp-cell fp-cell--1">
+    <div class="fp-item">
+      <!-- News item 1 -->
+    </div>
+  </div>
+  <div class="fp-cell fp-cell--2">
+    <div class="fp-item">
+      <!-- News item 2 -->
+    </div>
+  </div>
+  <!-- More cells and items -->
+</div>
+```
+
+Next, we need to style the grid container and the cells using CSS. We can use the `display: grid` property to create a three-column layout with gaps between them. We can also use pseudo-elements (`:before` and `:after`) to create vertical lines between the columns. For example:
+
+```css
+.frontpage {
+  position: relative;
+  display: grid;
+  /* Three columns */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 32px;
+  border: 1px solid transparent;
+  border-top: 1px solid #DADCE0;
+  border-bottom: 1px solid #DADCE0;
+  overflow: hidden;
+}
+
+/* Two faux columns */
+.frontpage:before,
+.frontpage:after {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  content: "";
+  width: calc(33.3% - 4px);
+}
+
+.frontpage:before {
+  left: 0;
+  border-right: 1px solid #DADCE0;
+}
+
+.frontpage:after {
+  right: 0;
+  border-left: 1px solid #DADCE0;
+}
+```
+
+Finally, we need to position the grid cells and the items using CSS grid properties. We can use `grid-row` and `grid-column` to span multiple rows or columns for each cell. We can also use `align-items` and `justify-content` to align the items inside the cells. For example:
+
+```css
+/* Position the cells */
+.fp-cell--1 {
+  grid-row: span 2;
+}
+
+.fp-cell--2 {
+  grid-row: span 2;
+}
+
+.fp-cell--3 {
+  grid-column: span 2;
+}
+
+.fp-cell--4 {
+}
+
+/* Align the items */
+.fp-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
+
